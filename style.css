@@ -1,0 +1,49 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    grid-template-rows: 0.33fr 0.33fr 0.34fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "image-block text-block"
+        "second-row-text second-row-text"
+        "third-row-image third-row-image";
+}
+
+.image-block {
+    background-image: url('static/brand-image.png');
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    box-sizing: border-box;
+    grid-area: image-block;
+}
+
+.text-block {
+    background-color: aquamarine;
+    width: 100%;
+    box-sizing: border-box;
+    grid-area: text-block;
+}
+
+.second-row-text {
+    background-color: aqua;
+    width: 100%;
+    box-sizing: border-box;
+    grid-area: second-row-text;
+}
+
+.third-row-image {
+    background-image: url('static/Computer-Vision.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    box-sizing: border-box;
+    grid-area: third-row-image;
+}
