@@ -1,0 +1,51 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+}
+
+.image-block {
+    background-image: url('static/brand-image.png');
+    background-size: cover;
+    background-position: top;
+    width: 50%;
+    height: 33.33%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.text-block {
+    background-color: aquamarine;
+    width: 50%;
+    height: 33.33%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.second-row-text {
+    background-color: aqua;
+    width: 100%;
+    height: 33.33%;
+    position: absolute;
+    top: 33.33%;
+    left: 0;
+}
+
+.third-row-image {
+    background-image: url('static/Computer-Vision.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 33.34%;
+    position: absolute;
+    top: 66.66%;
+    left: 0;
+}
