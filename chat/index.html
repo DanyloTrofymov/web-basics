@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Simple Chat</h1>
+    <div id="userList"></div>
+    <div id="messages"></div>
+
+    <input type="text" id="usernameInput" placeholder="Enter your name">
+    <button id="registerButton">Join Chat</button>
+    <div id="chat">
+        <p id="username-init"> </p>
+        <input type="text" id="messageInput" placeholder="Type your message">
+        <button id="sendButton">Send</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        let userColor = getRandomColor();
+        let username;
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        socket.on('userList', (users) => {
+            const userListDiv = document.getElementById('userList');
+            userListDiv.innerHTML = `<p>Users online:&nbsp</p>${users.map(user => `<p style="color:${user.color}">${user.username}&nbsp</p>`).join('')}`;
+        });
+
+        socket.on('message', (message) => {
+            const messagesDiv = document.getElementById('messages');
+            const messageNode = document.createElement('p');
+            messageNode.innerHTML = `<span class="user-message" style="color:${message.color}">${message.username}: </span>${message.text}`;
+            messagesDiv.appendChild(messageNode);
+        });
+
+
+        document.getElementById('sendButton').addEventListener('click', () => {
+            addMessage()
+        });
+
+
+        document.getElementById('messageInput').addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                addMessage()
+            }
+        });
+
+        document.getElementById('registerButton').addEventListener('click', () => {
+            addUser()
+        });
+        document.getElementById('usernameInput').addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                addUser()
+            }
+        });
+
+
+        function addMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value;
+            if (message) {
+                socket.emit('message', message);
+                messageInput.value = '';
+            }
+        }
+
+        function addUser() {
+            username = usernameInput.value;
+            username = username.replace(/[^a-zA-Z0-9]/g, '');
+            if (username) {
+                const usernameInput = document.getElementById('usernameInput');
+                const registerButton = document.getElementById('registerButton');
+                const messageInput = document.getElementById('messageInput');
+                const sendButton = document.getElementById('sendButton');
+                const messages = document.getElementById('messages');
+                socket.emit('register', { username, color: userColor });
+                registerButton.style.display = 'none';
+                usernameInput.style.display = 'none';
+                messageInput.style.display = 'inline-block';
+                sendButton.style.display = 'inline-block';
+                messages.style.display = 'block';
+                const messagesDiv = document.getElementById('chat');
+                const messageUsername = document.getElementById('username-init');
+                const messageNode = document.createElement('p');
+                messageNode.innerHTML = username;
+                messageNode.style.display = 'inline-block';
+                messageNode.style.background = userColor
+                messageNode.id = 'username';
+                messagesDiv.replaceChild(messageNode, messageUsername);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
