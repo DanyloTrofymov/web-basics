@@ -184,28 +184,13 @@ export default class UserService {
   private queryBuilder(query: IQuery): SelectQueryBuilder<User> {
     let todosQueryBuilder = User.createQueryBuilder('user');
 
-    if (query.public) {
-      todosQueryBuilder = todosQueryBuilder.andWhere('todo.isPublic = :isPublic', {
-        isPublic: query.public
-      });
-    }
-    if (query.completed) {
-      todosQueryBuilder = todosQueryBuilder.andWhere('todo.isCompleted = :isCompleted', {
-        isCompleted: query.completed
-      });
-    }
-    if (query.search) {
-      todosQueryBuilder = todosQueryBuilder.andWhere('todo.title ILIKE :search', {
-        search: `%${query.search}%`
-      });
-    }
     if (query.skip) {
       todosQueryBuilder = todosQueryBuilder.skip(query.skip);
     }
     if (query.take) {
       todosQueryBuilder = todosQueryBuilder.take(query.take);
     }
-    todosQueryBuilder = todosQueryBuilder.orderBy('todo.title', 'ASC');
+
     return todosQueryBuilder;
   }
 }

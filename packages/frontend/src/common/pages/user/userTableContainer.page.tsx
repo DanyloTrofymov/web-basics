@@ -19,11 +19,9 @@ export const UserTableContainer: React.FC = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState<IUser>();
-  const [search, setSearch] = useState('');
   const [skip, setSkip] = useState(0);
   const [take, setTake] = useState(8);
   const query: QueryFields = {
-    search,
     skip,
     take
   };
@@ -67,13 +65,7 @@ export const UserTableContainer: React.FC = () => {
   };
   return (
     <Box>
-      <UserTable
-        userItems={users.data}
-        onView={handleView}
-        onDelete={handleDelete}
-        onSearch={setSearch}
-        paginationProps={paginationProps}
-      />
+      <UserTable userItems={users.data} onView={handleView} paginationProps={paginationProps} />
       <ProfileDeleteModal
         isOpen={isDeleteOpen}
         onClose={() => {
@@ -88,6 +80,7 @@ export const UserTableContainer: React.FC = () => {
         onClose={(): void => {
           setIsViewOpen(false);
         }}
+        isCurrentUser={false}
         handleEdit={handleEdit}
       />
       <ProfileEditModal

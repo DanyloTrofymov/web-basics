@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Button, TableRow } from '@mui/material';
+import { TableRow } from '@mui/material';
 import { UserTableElement } from '../userTableElement';
 import type { IUser } from '../../../types/user.type';
 import { SortDirection } from '../../../types/user.type';
@@ -10,7 +10,6 @@ import {
   StyledTableContainer,
   StyledBox
 } from './userTable.styled';
-import SearchBar from '../../searchBar/searchbar.component';
 import type { Pagination } from '../../../types/pagination.type';
 import { MobileButtons, TabletButtons, DesktopButtons } from './paginatonButtons';
 
@@ -18,17 +17,9 @@ interface ITableProps {
   userItems: Array<IUser>;
   paginationProps: Pagination;
   onView: (user: IUser) => void;
-  onDelete: (user: IUser) => void;
-  onSearch: (query: string) => void;
 }
 
-export const UserTable: React.FC<ITableProps> = ({
-  userItems,
-  paginationProps,
-  onView,
-  onDelete,
-  onSearch
-}) => {
+export const UserTable: React.FC<ITableProps> = ({ userItems, paginationProps, onView }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -113,14 +104,6 @@ export const UserTable: React.FC<ITableProps> = ({
   };
   return (
     <StyledBox>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row'
-        }}
-      >
-        <SearchBar onSearch={onSearch} />
-      </Box>
       <StyledTableContainer ref={carouselRef}>
         <StyledTable>
           <StyledTableBody>
@@ -148,12 +131,7 @@ export const UserTable: React.FC<ITableProps> = ({
               </StyledTableHeadCell>
             </TableRow>
             {sortedTodoItems.map((user, index) => (
-              <UserTableElement
-                key={index}
-                user={user}
-                onView={(): void => onView(user)}
-                onDelete={(): void => onDelete(user)}
-              />
+              <UserTableElement key={index} user={user} onView={(): void => onView(user)} />
             ))}
             <MobileButtons paginationProps={paginationProps} todoItemsLength={userItems.length} />
           </StyledTableBody>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { UseMutationResult, UseQueryResult } from 'react-query';
+import type { UseMutationResult } from 'react-query';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import userService from '../services/user.service';
@@ -32,7 +32,7 @@ export function useUser() {
   });
 }
 
-export function useAllUsers(query: QueryFields): UseQueryResult {
+export function useAllUsers(query: QueryFields) {
   const queryClient = useQueryClient();
   const history = useHistory();
   const fetchTodos = async (): Promise<IResponceUsers> => {

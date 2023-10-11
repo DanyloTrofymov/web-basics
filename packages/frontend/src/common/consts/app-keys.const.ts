@@ -20,7 +20,8 @@ export const BACKEND_KEYS = {
   FORGOT_PASSWORD: 'user/forgot-password',
   CONFIRM_EMAIL: 'user/confirm',
   CHANGE_PASSWORD: 'user/change-password',
-  USER: 'user'
+  USER: 'user',
+  ME: 'user/me'
 };
 
 export const ROUTER_KEYS = {

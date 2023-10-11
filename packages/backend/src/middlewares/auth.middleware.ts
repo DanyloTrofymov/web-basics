@@ -27,7 +27,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
     if (!user) {
       throw new HttpError(403, 'Auth error', ERRORS.UNAUTHORIZED);
     }
-    
+
     req.body.user = user;
 
     next();

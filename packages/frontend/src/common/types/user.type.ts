@@ -8,6 +8,7 @@ export interface IUser {
   phone: string;
   idCard: string;
   faculty: string;
+  isAdmin: boolean;
 }
 
 export interface IUserEmail {

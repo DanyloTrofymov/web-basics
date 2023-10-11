@@ -67,6 +67,11 @@ userRouter.get(
   tryCatchMiddleware(userController.getAllUsers.bind(userController))
 );
 userRouter.get(
+  '/me',
+  authenticate,
+  tryCatchMiddleware(userController.getUser.bind(userController))
+);
+userRouter.get(
   '/count',
   authenticate,
   tryCatchMiddleware(userController.getCount.bind(userController))

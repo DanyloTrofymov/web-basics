@@ -1,12 +1,8 @@
-import {
-  Box, Table, TableBody, TableContainer, TableCell,
-} from '@mui/material'
-import styled from 'styled-components'
-import {
-  COLORS, FONTS, SPACES, BORDERS, BREAKING_POINTS, ANIMATIONS,
-} from '../../../../theme'
+import { Box, Table, TableBody, TableContainer, TableCell } from '@mui/material';
+import styled from 'styled-components';
+import { COLORS, FONTS, SPACES, BORDERS, BREAKING_POINTS, ANIMATIONS } from '../../../../theme';
 
-export const StyledTable = styled(Table,)`
+export const StyledTable = styled(Table)`
   display: table;
   width: 100%;
   border-collapse: collapse;
@@ -17,8 +13,8 @@ export const StyledTable = styled(Table,)`
     flex-direction: column;
     right: 10vh;
   }
-`
-export const StyledTableHeadCell = styled(TableCell,)`
+`;
+export const StyledTableHeadCell = styled(TableCell)`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: ${FONTS.WEIGHTS.bold};
   font-size: ${FONTS.SIZES.m};
@@ -42,9 +38,9 @@ export const StyledTableHeadCell = styled(TableCell,)`
   @media (max-width: ${BREAKING_POINTS.tablet}) {
     display: none;
   }
-`
+`;
 
-export const StyledTableBody = styled(TableBody,)`
+export const StyledTableBody = styled(TableBody)`
   display: table-row-group;
   background-color: ${COLORS.hoverBackground};
   @media (max-width: ${BREAKING_POINTS.tablet}) {
@@ -62,9 +58,9 @@ export const StyledTableBody = styled(TableBody,)`
     height: 60vh;
     flex-direction: column;
   }
-`
+`;
 
-export const StyledTableContainer = styled(TableContainer,)`
+export const StyledTableContainer = styled(TableContainer)`
   background-color: ${COLORS.white};
   -webkit-transition: ${BORDERS.transition};
   transition: ${BORDERS.transition};
@@ -80,9 +76,9 @@ export const StyledTableContainer = styled(TableContainer,)`
     box-shadow: none;
     overflow-x: hidden;
   }
-`
+`;
 
-export const StyledBox = styled(Box,)`
+export const StyledBox = styled(Box)`
   padding: ${SPACES.l};
   margin: 0;
   background-color: ${COLORS.hoverBackground};
@@ -100,4 +96,4 @@ export const StyledBox = styled(Box,)`
     padding: auto;
     margin: auto;
   }
-`
+`;

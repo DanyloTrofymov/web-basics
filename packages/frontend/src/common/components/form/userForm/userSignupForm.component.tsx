@@ -12,7 +12,8 @@ interface SignupFormProps {
 
 const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
   const handleSubmit = (values: FormikValues) => {
-    const { username, email, password, repeatPassword, name, idCard, group, phone, faculty } = values;
+    const { username, email, password, repeatPassword, name, idCard, group, phone, faculty } =
+      values;
     const user: IUserSignup = {
       username: username || '',
       email: email || '',
@@ -48,42 +49,37 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
 
           <StyledInputContainer>
             <Box>Name:</Box>
-            <Field type='text' id='name' name='name' placeholder="Шевченко Тарас Григорович" />
-            <StyledErrorMesssage name='name' component='div' className='error' />
+            <Field type="text" id="name" name="name" placeholder="Шевченко Тарас Григорович" />
+            <StyledErrorMesssage name="name" component="div" className="error" />
           </StyledInputContainer>
 
           <StyledInputContainer>
-            <Box>IDccard:</Box>
-            <Field type='text' id='idCard' name='idCard' placeholder="123456789" />
-            <StyledErrorMesssage name='idCard' component='div' className='error' />
+            <Box>ID card:</Box>
+            <Field type="text" id="idCard" name="idCard" placeholder="123456789" />
+            <StyledErrorMesssage name="idCard" component="div" className="error" />
           </StyledInputContainer>
 
           <StyledInputContainer>
             <Box>Group:</Box>
-            <Field type='text' id='group' name='group' placeholder="ІП-02" />
-            <StyledErrorMesssage name='group' component='div' className='error' />
+            <Field type="text" id="group" name="group" placeholder="ІП-02" />
+            <StyledErrorMesssage name="group" component="div" className="error" />
           </StyledInputContainer>
 
           <StyledInputContainer>
             <Box>Phone:</Box>
-            <Field type='text' id='phone' name='phone' placeholder="+380501234567" />
-            <StyledErrorMesssage name='phone' component='div' className='error' />
+            <Field type="text" id="phone" name="phone" placeholder="+380501234567" />
+            <StyledErrorMesssage name="phone" component="div" className="error" />
           </StyledInputContainer>
 
           <StyledInputContainer>
             <Box>Faculty:</Box>
-            <Field type='text' id='faculty' name='faculty' placeholder="ФІОТ" />
-            <StyledErrorMesssage name='faculty' component='div' className='error' />
+            <Field type="text" id="faculty" name="faculty" placeholder="ФІОТ" />
+            <StyledErrorMesssage name="faculty" component="div" className="error" />
           </StyledInputContainer>
 
           <StyledInputContainer>
             <Box>Password</Box>
-            <Field
-              type="password"
-              id="password"
-              name="password"
-              placeholder="password"
-            />
+            <Field type="password" id="password" name="password" placeholder="password" />
             <StyledErrorMesssage name="password" component="div" />
           </StyledInputContainer>
 

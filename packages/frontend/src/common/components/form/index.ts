@@ -1,1 +1,1 @@
-export * from './form.styled'
+export * from './form.styled';

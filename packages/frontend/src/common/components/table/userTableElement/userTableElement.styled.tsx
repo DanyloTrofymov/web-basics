@@ -50,19 +50,20 @@ export const StyledTableCell = styled(TableCell)`
   overflow: hidden;
   text-overflow: ellipsis;
   &:nth-child(1) {
-    width: 20%;
+    width: 60%;
     max-width: 10vw;
     font-weight: bold;
     font-size: ${FONTS.SIZES.l};
   }
   &:nth-child(2) {
-    width: 40%;
+    width: 20%;
     max-width: 20vw;
+    text-align: center;
   }
   &:nth-child(3) {
-    width: 40%;
+    width: 20%;
     min-width: 20vw;
-    text-align: right;
+    text-align: center;
   }
   @media (max-width: ${BREAKING_POINTS.tablet}) {
     padding: ${SPACES.s};
