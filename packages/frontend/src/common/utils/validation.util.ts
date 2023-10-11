@@ -7,15 +7,17 @@ const todoValidationConstants = {
   descriptionMaxLength: 500
 };
 
-
 const regexp = {
-  pibPattern: /^[А-ЩЬЮЯҐІЇЄґ][а-щьюяґіїєҐІЇЄґ']+ [А-ЩЬЮЯҐІЇЄґ][а-щьюяґіїєҐІЇЄґ']+ [А-ЩЬЮЯҐІЇЄґ][а-щьюяґіїєҐІЇЄґ']+$/,
+  pibPattern:
+    /^[А-ЩЬЮЯҐІЇЄґ][а-щьюяґіїєҐІЇЄґ']+ [А-ЩЬЮЯҐІЇЄґ][а-щьюяґіїєҐІЇЄґ']+ [А-ЩЬЮЯҐІЇЄґ][а-щьюяґіїєҐІЇЄґ']+$/,
   groupPattern: /^[А-ЯҐЄІ]+-[0-9]{2}$/,
   phonePattern: /^\+(?:\d{1,3})?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,9}[-.\s]?\d{1,9}[-.\s]?\d{1,9}$/,
   idCardPattern: /^\d{9}$/,
   facultyPattern: /^[А-ЯҐЄІ]+$/,
-  email: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-}
+  email:
+    // eslint-disable-next-line
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+};
 const userConstants = {
   usernameMinLength: 8,
   usernameMaxLength: 64,
@@ -54,7 +56,7 @@ const validateName = (name: string) => {
     errors.name = 'Invalid name';
   }
   return errors;
-}
+};
 
 const validateGroup = (group: string) => {
   const errors: Partial<FormikValues> = {};
@@ -64,7 +66,7 @@ const validateGroup = (group: string) => {
     errors.group = 'Invalid group';
   }
   return errors;
-}
+};
 
 const validatePhone = (phone: string) => {
   const errors: Partial<FormikValues> = {};
@@ -74,7 +76,7 @@ const validatePhone = (phone: string) => {
     errors.phone = 'Invalid phone';
   }
   return errors;
-}
+};
 
 const validateIdCard = (idCard: string) => {
   const errors: Partial<FormikValues> = {};
@@ -84,7 +86,7 @@ const validateIdCard = (idCard: string) => {
     errors.idCard = 'Invalid ID card';
   }
   return errors;
-}
+};
 
 const validateFaculty = (faculty: string) => {
   const errors: Partial<FormikValues> = {};
@@ -94,7 +96,7 @@ const validateFaculty = (faculty: string) => {
     errors.faculty = 'Invalid faculty';
   }
   return errors;
-}
+};
 
 const validatePassword = (password: string) => {
   const errors: Partial<FormikValues> = {};
@@ -146,7 +148,7 @@ export const validateUserEditForm = (values: FormikValues) => {
   if (emailValidation) {
     errors.email = emailValidation;
   }
-    const nameValidation = validateName(values.name).name;
+  const nameValidation = validateName(values.name).name;
   if (nameValidation) {
     errors.name = nameValidation;
   }

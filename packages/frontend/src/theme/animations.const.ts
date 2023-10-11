@@ -1,3 +1,3 @@
 export const ANIMATIONS = {
-	speed: '0.2s',
-}
+  speed: '0.2s'
+};
