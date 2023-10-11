@@ -12,18 +12,21 @@ import { useCountUsers, useAllUsers } from '../../../hooks/user.hooks';
 import type { Pagination } from '../../types/pagination.type';
 import { ILoadStatus } from '../../types/loadingStatuses.type';
 import Loader from '../../utils/loader.styled';
+import { PAGINATION_KEYS } from '../../consts/pagination.consts';
 
 export const UserTableContainer: React.FC = () => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
+  const [search, setSearch] = useState('');
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState<IUser>();
   const [skip, setSkip] = useState(0);
-  const [take, setTake] = useState(8);
+  const [take, setTake] = useState(PAGINATION_KEYS.DESKTOP_PAGE_SIZE);
   const query: QueryFields = {
     skip,
-    take
+    take,
+    search
   };
   const { status: usersStatus, data: users } = useAllUsers(query);
   const count = useCountUsers(query, users?.data);
@@ -65,7 +68,12 @@ export const UserTableContainer: React.FC = () => {
   };
   return (
     <Box>
-      <UserTable userItems={users.data} onView={handleView} paginationProps={paginationProps} />
+      <UserTable
+        userItems={users.data}
+        onView={handleView}
+        paginationProps={paginationProps}
+        onSearch={setSearch}
+      />
       <ProfileDeleteModal
         isOpen={isDeleteOpen}
         onClose={() => {

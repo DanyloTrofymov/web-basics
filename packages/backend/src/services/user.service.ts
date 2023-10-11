@@ -80,6 +80,7 @@ export default class UserService {
 
   public async updateUser(data: IUserUpdate): Promise<UpdateResult> {
     const user = await this.getOneById(data);
+
     if (user === null) {
       throw new HttpError(400, 'User not found');
     }
@@ -95,7 +96,18 @@ export default class UserService {
         throw new HttpError(400, 'Username already exists');
       }
     }
-    return User.update({ id: data.id }, { username: data.username, email: data.email });
+    return User.update(
+      { id: data.id },
+      {
+        username: data.username,
+        email: data.email,
+        name: data.name,
+        group: data.group,
+        phone: data.phone,
+        idCard: data.idCard,
+        faculty: data.faculty
+      }
+    );
   }
 
   public async changePassword(data: IUserChangePassword): Promise<UpdateResult> {
@@ -177,20 +189,29 @@ export default class UserService {
   }
 
   public async getCount(query: IQuery): Promise<number> {
-    const todosQueryBuilder = this.queryBuilder(query);
-    return todosQueryBuilder.getCount();
+    const userQueryBuilder = this.queryBuilder(query);
+    return userQueryBuilder.getCount();
   }
 
   private queryBuilder(query: IQuery): SelectQueryBuilder<User> {
-    let todosQueryBuilder = User.createQueryBuilder('user');
-
+    let userQueryBuilder = User.createQueryBuilder('user');
+    if (query.search) {
+      userQueryBuilder = userQueryBuilder
+        .andWhere('user.name ILIKE :search', {
+          search: `%${query.search}%`
+        })
+        .orWhere('user.faculty ILIKE :search OR user.group ILIKE :search', {
+          search: `%${query.search}%`
+        });
+    }
     if (query.skip) {
-      todosQueryBuilder = todosQueryBuilder.skip(query.skip);
+      userQueryBuilder = userQueryBuilder.skip(query.skip);
     }
     if (query.take) {
-      todosQueryBuilder = todosQueryBuilder.take(query.take);
+      userQueryBuilder = userQueryBuilder.take(query.take);
     }
+    userQueryBuilder = userQueryBuilder.orderBy('user.name', 'ASC');
 
-    return todosQueryBuilder;
+    return userQueryBuilder;
   }
 }

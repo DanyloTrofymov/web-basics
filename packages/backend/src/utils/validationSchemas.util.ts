@@ -23,6 +23,7 @@ export const userSchema = Joi.object({
   email: Joi.string().email(),
   password: Joi.string().min(userConstants.passwordMinLength).max(userConstants.passwordMaxLength),
   repeatPassword: Joi.ref('password'),
+  isAdmin: Joi.boolean(),
   oldPassword: Joi.string()
     .min(userConstants.passwordMinLength)
     .max(userConstants.passwordMaxLength),
@@ -32,6 +33,7 @@ export const userSchema = Joi.object({
     username: Joi.string(),
     email: Joi.string(),
     iat: Joi.number(),
+    isAdmin: Joi.boolean(),
     exp: Joi.number()
   })
 });

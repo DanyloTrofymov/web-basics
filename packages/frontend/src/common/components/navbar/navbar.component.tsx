@@ -55,7 +55,7 @@ export const Navbar = (): React.JSX.Element => {
             flexGrow: 1
           }}
         >
-          Todo
+          User database
         </Typography>
         <NavbarButtons
           user={data}

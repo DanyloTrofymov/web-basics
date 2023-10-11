@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { TableRow } from '@mui/material';
+import { Box, TableRow } from '@mui/material';
 import { UserTableElement } from '../userTableElement';
 import type { IUser } from '../../../types/user.type';
 import { SortDirection } from '../../../types/user.type';
@@ -12,14 +12,22 @@ import {
 } from './userTable.styled';
 import type { Pagination } from '../../../types/pagination.type';
 import { MobileButtons, TabletButtons, DesktopButtons } from './paginatonButtons';
+import SearchBar from '../../searchBar/searchbar.component';
+import { PAGINATION_KEYS } from '../../../consts/pagination.consts';
 
 interface ITableProps {
   userItems: Array<IUser>;
   paginationProps: Pagination;
   onView: (user: IUser) => void;
+  onSearch: (query: string) => void;
 }
 
-export const UserTable: React.FC<ITableProps> = ({ userItems, paginationProps, onView }) => {
+export const UserTable: React.FC<ITableProps> = ({
+  userItems,
+  paginationProps,
+  onView,
+  onSearch
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -27,18 +35,18 @@ export const UserTable: React.FC<ITableProps> = ({ userItems, paginationProps, o
   const [order, setOrder] = useState(SortDirection.Ascending);
   useEffect(() => {
     const handleResize = (): void => {
-      if (window.innerWidth > 425 && window.innerWidth < 768) {
+      if (window.innerWidth > 425 && window.innerWidth <= 768) {
         setCurrentIndex(0);
         paginationProps.setSkip(0);
-        paginationProps.setTake(5);
+        paginationProps.setTake(PAGINATION_KEYS.TABLET_PAGE_SIZE);
       }
       if (window.innerWidth > 768) {
-        paginationProps.setTake(10);
+        paginationProps.setTake(PAGINATION_KEYS.DESKTOP_PAGE_SIZE);
       }
-      if (window.innerWidth < 425) {
+      if (window.innerWidth <= 425) {
         setCurrentIndex(0);
         paginationProps.setSkip(0);
-        paginationProps.setTake(5);
+        paginationProps.setTake(PAGINATION_KEYS.MOBILE_PAGE_SIZE);
       }
     };
 
@@ -104,6 +112,9 @@ export const UserTable: React.FC<ITableProps> = ({ userItems, paginationProps, o
   };
   return (
     <StyledBox>
+      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+        <SearchBar onSearch={onSearch} />
+      </Box>
       <StyledTableContainer ref={carouselRef}>
         <StyledTable>
           <StyledTableBody>
