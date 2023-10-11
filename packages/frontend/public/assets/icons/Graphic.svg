@@ -1,0 +1,23 @@
+<svg class="recharts-surface" width="120" height="32" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
+  <title></title>
+  <desc></desc>
+  <defs>
+    <clipPath id="recharts16-clip">
+      <rect x="5" y="5" height="22" width="110"></rect>
+    </clipPath>
+  </defs>
+  <defs>
+    <linearGradient id="grad-1-5" x1="0%" y1="0%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#4DAE51" stop-opacity="0"></stop>
+      <stop offset="100%" stop-color="#4DAE51" stop-opacity="1"></stop>
+    </linearGradient>
+  </defs>
+  <g class="recharts-layer recharts-line">
+    <path stroke="url(#grad-1-5)" stroke-width="2" radius="0,10,10,0" stroke-linecap="round" stroke-linejoin="round"
+      fill-opacity="1" fill="none" width="110" height="22" class="recharts-curve recharts-line-curve" d="M5,19.617L9.583,21.514L14.167,23.665L18.75,
+22.963L23.333,24.056L27.917,22.63L32.5,23.538L37.083,23.078L41.667,23.538L46.25,22.986L50.833,24.757L55.417,23.216L60,
+23.239L64.583,27L69.167,24.01L73.75,18.122L78.333,12.832L82.917,14.453L87.5,14.741L92.083,15.247L96.667,15.799L101.25,
+12.659L105.833,5.495L110.417,5.437L115,5"></path>
+    <g class="recharts-layer"></g>
+  </g>
+</svg>
